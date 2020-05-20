@@ -10,7 +10,7 @@
     </div>
     <ol class="video-list">
       <router-link v-for="video of videos" :key="video.id" class="card" :to="'video/' + video.id">
-        <img class="background" :src="'https://dingyang-admin-1301593316.cos.ap-guangzhou.myqcloud.com/coverImg/' + video.coverUrl">
+        <img class="background" :src="'https://admin.dy.tcualhp.cn/covers/' + video.coverUrl">
         <div class="title-container">
           <h1 class="title">{{video.title}}</h1>
         </div>

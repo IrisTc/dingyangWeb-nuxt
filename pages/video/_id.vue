@@ -5,13 +5,13 @@
           <h1>{{current.title}}</h1>
           <div class="time">{{current.date}}</div>
         </div>
-        <video :src="'https://dingyang-admin-1301593316.cos.ap-guangzhou.myqcloud.com/videos/' + current.url" controls></video>
+        <video :src="'https://admin.dy.tcualhp.cn/videos/' + current.url" controls></video>
       </section>
       <section>
         <div class="header"><div class="dot">往期回顾</div></div>
         <div class="other-videos">
           <a v-for="v of otherVideos" class="other-video" :key="v.id" @click="changeVideo(v)">
-            <div class="cover"><img :src="'https://dingyang-admin-1301593316.cos.ap-guangzhou.myqcloud.com/coverImg/' + v.coverUrl"></div>
+            <div class="cover"><img :src="'https://admin.dy.tcualhp.cn/covers/' + v.coverUrl"></div>
             <h1>{{v.title}}</h1>
             <div class="time">{{v.date}}</div>
           </a>
@@ -33,7 +33,7 @@ export default {
     },
     props: ['idInit'],
     async asyncData () {
-      const result = await axios.get("http://service-jex1lh0j-1301593316.sh.apigw.tencentcs.com/release/video");
+      const result = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/video");
       return {
         videos: result.data.result.list
       }

@@ -18,7 +18,7 @@
         </div>
         <div class="article-grid row">
           <a v-for="(a, index) of otherArticles.slice(0, 3)" :key="index" class="col-md-5 col-xs-5" :class="{'image-item': index === 0,   'card-item': index !== 0}" @click="changeArticle(a)">
-            <img v-if="index === 0" class="background" :src="'https://dingyang-admin-1301593316.cos.ap-guangzhou.myqcloud.com/coverImg/' + a.coverUrl">
+            <img v-if="index === 0" class="background" :src="'https://admin.dy.tcualhp.cn/covers/' + a.coverUrl">
             <div v-if="index !== 0" class="border"></div>
             <div class="content">
               <h1>{{a.title}}</h1>

@@ -17,7 +17,7 @@ export default {
       }
     },
     async asyncData () {
-      const result = await axios.get("http://service-jex1lh0j-1301593316.sh.apigw.tencentcs.com/release/article?type=stock");
+      const result = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/article?type=stock");
       const articles = result.data.result
       return {
         article : articles

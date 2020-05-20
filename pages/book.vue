@@ -1,10 +1,22 @@
 <template>
-  <div class="markdown">
+  <div class="markdown contain">
     <vue-markdown :source="article"></vue-markdown>
   </div>
 </template>
 <style lang="sass">
 @import '~assets/style/markdown.scss'
+</style>
+<style scoped>
+@media screen and (max-width: 1368px) {
+  .contain {
+    padding: 0 6vw;
+  }
+}
+@media screen and (max-width: 699px) {
+  .contain {
+    padding: 0;
+  }
+}
 </style>
 <script>
 import VueMarkdown from "vue-markdown";
@@ -18,11 +30,11 @@ export default {
       article: ""
     };
   },
-  async asyncData () {
-      const books = await axios.get("http://service-jex1lh0j-1301593316.sh.apigw.tencentcs.com/release/book");
-      return {
-        article: books.data.result[0].content
-      }
+  async asyncData() {
+    const books = await axios.get("https://admin.dy.tcualhp.cn/api/api/dingyang/book");
+    return {
+      article: books.data.result[0].content
+    };
   }
 };
 </script>

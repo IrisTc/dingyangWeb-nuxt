@@ -10,7 +10,7 @@
     </div>
     <ol class="card-list">
       <router-link v-for="(article, index) of articles"  :key="article.id" class="card" :to="'/article/' + type + '/' + article.id">
-        <img v-if="index === 0" class="fill-background" :src="'https://dingyang-admin-1301593316.cos.ap-guangzhou.myqcloud.com/coverImg/' + article.coverUrl">
+        <img v-if="index === 0" class="fill-background" :src="'https://admin.dy.tcualhp.cn/covers/' + article.coverUrl">
         <img v-if="type && index !== 0" class="background" :src="'/' + type + '.svg'">
         <div class="border"></div>
         <div class="content">

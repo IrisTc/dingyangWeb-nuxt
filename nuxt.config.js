@@ -13,7 +13,7 @@ module.exports = {
       { hid: '丁洋个人网站', name: '丁洋', content: '私募基金，私募总冠军，基金管理，博弈理论，实战手筋-操盘黑客理论，短线手筋-股市黑客理论' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/logo.svg' }
+      { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' }
     ],
     script: [
       { src: '/lib/jquery.min.js'},

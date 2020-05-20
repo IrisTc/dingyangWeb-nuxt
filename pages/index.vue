@@ -19,6 +19,7 @@
 </template>
 <style scoped>
 .bottom {
+  padding: 0 30px;
   margin-bottom: 40px;
 }
 </style>
@@ -41,11 +42,11 @@ export default {
       }
     },
     async asyncData () {
-      const predictions = await axios.get("http://service-jex1lh0j-1301593316.sh.apigw.tencentcs.com/release/article?type=prediction&count=4");
-      const stocks = await axios.get("http://service-jex1lh0j-1301593316.sh.apigw.tencentcs.com/release/article?type=stock&count=4");
-      const researches = await axios.get("http://service-jex1lh0j-1301593316.sh.apigw.tencentcs.com/release/article?type=research&count=4");
-      const investments = await axios.get("http://service-jex1lh0j-1301593316.sh.apigw.tencentcs.com/release/article?type=investment&count=4");
-      const video = await axios.get("http://service-jex1lh0j-1301593316.sh.apigw.tencentcs.com/release/video");
+      const predictions = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/article?type=prediction&count=4");
+      const stocks = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/article?type=stock&count=4");
+      const researches = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/article?type=research&count=4");
+      const investments = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/article?type=investment&count=4");
+      const video = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/video");
       return {
         Predictions : predictions.data.result,
         Stocks : stocks.data.result,
