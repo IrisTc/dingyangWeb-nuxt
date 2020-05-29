@@ -1,4 +1,4 @@
-# dingyang
+# dingyang-nuxt
 
 > Nuxt project for SEO
 
