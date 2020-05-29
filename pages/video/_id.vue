@@ -5,13 +5,13 @@
           <h1>{{current.title}}</h1>
           <div class="time">{{current.date}}</div>
         </div>
-        <video :src="'https://admin.dy.tcualhp.cn/videos/' + current.url" controls></video>
+        <video :src="preUrl + '/uploads/videos/' + current.url" controls></video>
       </section>
       <section>
         <div class="header"><div class="dot">往期回顾</div></div>
         <div class="other-videos">
           <a v-for="v of otherVideos" class="other-video" :key="v.id" @click="changeVideo(v)">
-            <div class="cover"><img :src="'https://admin.dy.tcualhp.cn/covers/' + v.coverUrl"></div>
+            <div class="cover"><img :src="preUrl + '/uploads/covers/' + v.coverUrl"></div>
             <h1>{{v.title}}</h1>
             <div class="time">{{v.date}}</div>
           </a>
@@ -23,17 +23,26 @@
 @import '~assets/style/video-view.scss'
 </style>
 <script>
-import axios from 'axios'
+import axios from "~/plugins/axios";
 export default {
     data() {
         return {
             id: this.idInit || 1,
             videos: [],
+            preUrl: ''
             }
     },
     props: ['idInit'],
-    async asyncData () {
-      const result = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/video");
+    created(){
+      this.preUrl = this.host
+    },
+    computed:{
+      videoUrl(currentUrl){
+        return this.host + '/uploads/videos/' + currentUrl
+      }
+    },
+    async asyncData (params) {
+      const result = await axios.get(params.app.host + "/api/dingyang/video");
       return {
         videos: result.data.result.list
       }

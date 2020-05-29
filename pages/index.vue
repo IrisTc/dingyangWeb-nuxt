@@ -26,7 +26,7 @@
 <script>
 import ArticlePeek from "~/components/ArticlePeek"
 import VideoPeek from "~/components/VideoPeek"
-import axios from 'axios'
+import axios from "~/plugins/axios";
 export default {
     components: {
         ArticlePeek,
@@ -41,12 +41,12 @@ export default {
         videos: []
       }
     },
-    async asyncData () {
-      const predictions = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/article?type=prediction&count=4");
-      const stocks = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/article?type=stock&count=4");
-      const researches = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/article?type=research&count=4");
-      const investments = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/article?type=investment&count=4");
-      const video = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/video");
+    async asyncData (params) {
+      const predictions = await axios.get(params.app.host + "/api/dingyang/article?type=prediction&count=4");
+      const stocks = await axios.get(params.app.host + "/api/dingyang/article?type=stock&count=4");
+      const researches = await axios.get(params.app.host + "/api/dingyang/article?type=research&count=4");
+      const investments = await axios.get(params.app.host + "/api/dingyang/article?type=investment&count=4");
+      const video = await axios.get(params.app.host + "/api/dingyang/video");
       return {
         Predictions : predictions.data.result,
         Stocks : stocks.data.result,

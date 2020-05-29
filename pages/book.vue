@@ -20,7 +20,7 @@
 </style>
 <script>
 import VueMarkdown from "vue-markdown";
-import axios from "axios";
+import axios from "~/plugins/axios";
 export default {
   components: {
     VueMarkdown
@@ -30,8 +30,8 @@ export default {
       article: ""
     };
   },
-  async asyncData() {
-    const books = await axios.get("https://admin.dy.tcualhp.cn/api/api/dingyang/book");
+  async asyncData(params) {
+    const books = await axios.get(params.app.host + "/api/dingyang/book");
     return {
       article: books.data.result[0].content
     };

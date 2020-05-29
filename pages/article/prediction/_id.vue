@@ -5,7 +5,7 @@
 </template>
 <script>
 import ArticleView from '~/components/Article'
-import axios from 'axios'
+import axios from "~/plugins/axios";
 export default {
     components: {
         ArticleView
@@ -16,8 +16,8 @@ export default {
         article: [],
       }
     },
-    async asyncData () {
-      const result = await axios.get("https://admin.dy.tcualhp.cn/api/dingyang/article?type=prediction");
+    async asyncData (params) {
+      const result = await axios.get(params.app.host +"/api/dingyang/article?type=prediction");
       
       const articles = result.data.result
       return {

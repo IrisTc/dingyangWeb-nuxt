@@ -1,4 +1,6 @@
 const axios = require('axios')
+const fs = require('fs')
+const path = require('path')
 
 module.exports = {
   mode: 'universal',
@@ -16,8 +18,8 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' }
     ],
     script: [
-      { src: '/lib/jquery.min.js'},
-      { src:'/lib/bootstrap/js/bootstrap.min.js'}
+      { src: '/lib/jquery.min.js' },
+      { src: '/lib/bootstrap/js/bootstrap.min.js' }
     ]
   },
   /*
@@ -28,11 +30,12 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    {src: '@plugins/config', ssr: true}
   ],
   /*
   ** Global CSS
   */
- css: [
+  css: [
     '@assets/reset.css',
     '@static/lib/bootstrap/css/bootstrap.min.css'
   ],
@@ -53,20 +56,25 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
     }
   },
 
   generate: {
-    routes: function (callback){
-      return axios.get("http://service-jex1lh0j-1301593316.sh.apigw.tencentcs.com/release/count").then((res) => {
-        const routes = res.data.result.map((item) => {
-          if(item.type === 'article'){
-              return '/article/' + item.category +'/' + item.id
+    routes: function (callback) {
+      fs.readFile(path.join(__dirname, '/count.json'), function (err, data) {
+        if (err) {
+          console.log(err)
+        }
+        let jsonData = data.toString()
+        jsonData = JSON.parse(jsonData)
+        const routes = jsonData.map((item) => {
+          if (item.type === 'article') {
+            return '/article/' + item.category + '/' + item.id
           }
-          else{
-              return '/video/' + item.id
-          }          
+          else {
+            return '/video/' + item.id
+          }
         })
         callback(null, routes)
       })
